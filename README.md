@@ -141,6 +141,17 @@ git push
 
 ---
 
+## 🛠 Bootstrap Setup
+
+To quickly install everything on a new Mac:
+
+```sh
+chmod +x ~/.config/bootstrap.sh
+~/.config/bootstrap.sh
+```
+
+---
+
 ## 💬 License & Attribution
 
 This repo is for personal use, but feel free to fork or adapt!
