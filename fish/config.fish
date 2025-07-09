@@ -19,7 +19,11 @@ alias gpr="git pull --rebase"
 alias gl="git l"
 
 # ssl
-set -gx SSL_CERT_DIR ~/.certs/
+# Also enable native TLS (to use the system trust store too)
+set -Ux UV_NATIVE_TLS true
+# set -gx SSL_CERT_DIR ~/.certs/
+
+
 set -gx PATH /Users/CHAGRED/TokenUpdater /usr/local/libexec/ $PATH
 
 eval (/opt/homebrew/bin/brew shellenv)

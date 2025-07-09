@@ -1,0 +1,9 @@
+# Fish shell internal state
+fish/fish_variables
+
+# macOS metadata
+.DS_Store
+
+raycast/
+
+zed/prompts/
