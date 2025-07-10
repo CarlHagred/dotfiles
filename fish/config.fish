@@ -18,11 +18,7 @@ alias gfr="git fetch --all; git reset --hard origin/master"
 alias gpr="git pull --rebase"
 alias gl="git l"
 
-# ssl
-# Also enable native TLS (to use the system trust store too)
 set -Ux UV_NATIVE_TLS true
-# set -gx SSL_CERT_DIR ~/.certs/
-
 
 set -gx PATH /Users/CHAGRED/TokenUpdater /usr/local/libexec/ $PATH
 
