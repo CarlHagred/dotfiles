@@ -7,13 +7,19 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "agent": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4"
+    }
+  },
   "icon_theme": "Catppuccin Mocha",
   "ui_font_size": 16,
   "buffer_font_size": 16,
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Catppuccin Mocha (Blur)"
+    "dark": "Catppuccin Macchiato (Blur)"
   },
   "vim_mode": true,
   "workspace": {

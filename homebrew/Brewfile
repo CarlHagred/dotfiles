@@ -1,35 +1,27 @@
 tap "azure/functions"
-# Microsoft Azure CLI 2.0
 brew "azure-cli"
-# Modern, maintained replacement for ls
+brew "btop"
+brew "codex"
 brew "eza"
-# User-friendly command-line shell for UNIX-like operating systems
 brew "fish"
-# Command-line fuzzy finder written in Go
 brew "fzf"
-# Platform built on V8 to build network applications
 brew "node"
-# Cross-shell prompt for astronauts
-brew "starship"
-# Extremely fast Python package installer and resolver, written in Rust
-brew "uv"
-# Shell extension to navigate your filesystem faster
-brew "zoxide"
-# rust language
+brew "podman"
 brew "rust"
-# Azure Functions Core Tools 4.0
+brew "starship"
+brew "terraform"
+brew "zellij"
+brew "zoxide"
+brew "uv"
 brew "azure/functions/azure-functions-core-tools@4"
-# Password manager that keeps all passwords secure behind one password
 cask "1password"
-# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "amethyst"
+cask "bruno"
+cask "chatgpt"
 cask "ghostty"
-# Keyboard customiser
 cask "karabiner-elements"
-# Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
-# Control your tools with a few keystrokes
 cask "raycast"
-# Connect to Windows
+cask "vanilla"
 cask "windows-app"
-# Multiplayer code editor
 cask "zed"
