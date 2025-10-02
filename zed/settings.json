@@ -7,6 +7,19 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "auto_install_extensions": {
+    "catppuccin-blur": true,
+    "dockerfile": true,
+    "fish": true,
+    "ruff": true,
+    "git-firefly": true,
+    "html": true,
+    "make": true,
+    "markdownlint": true,
+    "terraform": true,
+    "toml": true,
+    "catppuccin-icons": true
+  },
   "agent": {
     "default_model": {
       "provider": "zed.dev",
@@ -19,7 +32,7 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Catppuccin Macchiato (Blur)"
+    "dark": "Catppuccin Mocha (Blur)"
   },
   "vim_mode": true,
   "workspace": {
