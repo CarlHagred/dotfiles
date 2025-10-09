@@ -63,6 +63,7 @@ osascript <<'EOF'
 on createHotKey(keyCombo, spaceIndex)
     tell application "System Events"
         -- Simulate pressing control + 1/2/3/4 when keys are pressed
+        -- also rebind fn to ctrl
         -- NOTE: macOS can't define global hotkeys without a GUI app
         -- You can assign these manually in System Settings → Keyboard → Shortcuts → Mission Control
     end tell
