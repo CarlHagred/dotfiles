@@ -15,6 +15,7 @@ brew "zoxide"
 brew "uv"
 brew "azure/functions/azure-functions-core-tools@4"
 brew "mas"
+
 cask "1password"
 cask "amethyst"
 cask "bruno"
@@ -30,3 +31,8 @@ cask "kindavim"
 cask "wooshy"
 cask "scrolla"
 cask "keka"
+
+mas "Vimlike", id: 1584519802
+mas "Wipr", id: 1662217862
+mas "Obsidian Web Clipper", id: 6720708363
+mas "1Password for Safari", id: 1569813296

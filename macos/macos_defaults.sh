@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+
+# Fast key repeat for Vim editing
+defaults write -g InitialKeyRepeat -int 15
+defaults write -g KeyRepeat -int 2
+
 # macOS Spaces & App Layout Setup (no yabai)
 
 echo "Configuring Mission Control behavior..."
