@@ -1,12 +1,7 @@
-# background-opacity=0.85
-
-# ~/.config/ghostty/config
-
 # Appearance
 background-opacity=0.85
-
 
 font-family=JetBrainsMono Nerd Font
 font-size=14
 
-theme = catppuccin-mocha
+theme = catppuccin-mocha.conf
