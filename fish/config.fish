@@ -1,3 +1,5 @@
+touch ~/.hushlogin
+
 # ALIAS
 alias ls=eza
 alias ll="eza -lahg"
@@ -25,3 +27,4 @@ set -gx PATH /Users/CHAGRED/TokenUpdater /usr/local/libexec/ $PATH
 eval (/opt/homebrew/bin/brew shellenv)
 starship init fish | source
 zoxide init fish | source
+set -U fish_greeting ""
