@@ -8,4 +8,3 @@ theme = catppuccin-mocha.conf
 # theme = custom.conf
 
 macos-titlebar-style = hidden
-# window-decoration = false
