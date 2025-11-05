@@ -4,6 +4,10 @@ set -e
 
 echo "🔧 Setting up your macOS environment..."
 
+# setup git user
+git config --global user.name "Carl Hagred"
+git config --global user.email "carl.hagred@gmail.com"
+
 # Install Xcode Command Line Tools if missing
 if ! xcode-select -p &>/dev/null; then
   echo "🛠 Installing Xcode Command Line Tools..."
