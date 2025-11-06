@@ -39,6 +39,7 @@
     "dark": "Catppuccin Mocha (Blur)"
   },
   "vim_mode": true,
+  "relative_line_numbers": true,
   "workspace": {
     "active_pane_modifiers": {
       "border_size": 0.0,
