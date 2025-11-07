@@ -14,6 +14,7 @@ brew "zoxide"
 brew "uv"
 brew "azure/functions/azure-functions-core-tools@4"
 brew "mas"
+brew "nvim"
 
 cask "1password"
 cask "amethyst"
