@@ -24,12 +24,8 @@
     "catppuccin-icons": true
   },
   "agent": {
-    "always_allow_tool_actions": true,
     "default_profile": "write",
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-5"
-    }
+    "model_parameters": []
   },
   "icon_theme": "Catppuccin Mocha",
   "ui_font_size": 16,
