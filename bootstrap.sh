@@ -45,4 +45,13 @@ else
   echo "✅ Rust already installed."
 fi
 
+# install UV
+if ! command -v uv &>/dev/null; then
+  echo "🔆 Installing UV..."
+  curl -LsSf https://astral.sh/uv/install.sh | sh
+  uv tool install ruff@latest
+else
+  echo "✅ UV already installed."
+fi
+
 echo "✅ All done! Restart your terminal to apply changes."
