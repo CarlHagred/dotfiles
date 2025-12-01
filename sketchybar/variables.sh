@@ -48,3 +48,24 @@ CORNER_RADIUS=15
 BORDER_WIDTH=2
 
 SHADOW=on
+WORKSPACE_COUNT=9
+
+AEROSPACE_CLI="/opt/homebrew/bin/aerospace"  # or "aerospace" if on PATH
+CONFIG_DIR="$HOME/.config/sketchybar"
+
+# Returns workspaces (space/newline separated; numbers or names)
+AEROSPACE_LIST_CMD="$AEROSPACE_CLI list-workspaces"        # replace with your actual command
+
+# Returns the current workspace (number or name)
+AEROSPACE_FOCUSED_CMD="$AEROSPACE_CLI current-workspace"   # replace with your actual command
+
+# Optional: returns occupied workspaces (same format as list)
+AEROSPACE_OCCUPIED_CMD="$AEROSPACE_CLI occupied-workspaces"  # set to "" if unsupported
+
+# Click switches workspace; {INDEX} is substituted
+AEROSPACE_SWITCH_CMD_TEMPLATE="$AEROSPACE_CLI workspace {INDEX}"
+
+# If your focused/occupied outputs are NAMES, provide a name→index mapping (or rely on position)
+AEROSPACE_NAME_TO_INDEX_CMD=""
+# Show numbers or names in the icons
+WORKSPACE_ICON_MODE="number"  # or "name"

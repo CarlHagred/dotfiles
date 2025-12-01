@@ -12,6 +12,7 @@ brew "starship"
 brew "terraform"
 brew "zellij"
 brew "zoxide"
+brew "sketchybar"
 brew "azure/functions/azure-functions-core-tools@4"
 brew "mas"
 brew "nvim"
@@ -32,6 +33,7 @@ cask "wooshy"
 cask "scrolla"
 cask "keka"
 cask "aerospace"
+cask "font-meslo-lg-nerd-font"
 
 mas "Vimlike", id: 1584519802
 mas "Wipr", id: 1662217862

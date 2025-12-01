@@ -24,7 +24,6 @@
     "catppuccin-icons": true
   },
   "agent": {
-    "always_allow_tool_actions": true,
     "default_profile": "write",
     "model_parameters": []
   },
@@ -37,7 +36,7 @@
     "dark": "Catppuccin Mocha (Blur)"
   },
   "vim_mode": true,
-  "relative_line_numbers": "enabled",
+  "relative_line_numbers": true,
   "workspace": {
     "active_pane_modifiers": {
       "border_size": 0.0,

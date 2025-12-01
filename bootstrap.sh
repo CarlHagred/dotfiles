@@ -54,4 +54,13 @@ else
   echo "✅ UV already installed."
 fi
 
+# Run macOS defaults script
+echo " Applying macOS defaults..."
+"$HOME/.config/macos/macos_defaults.sh"
+
+# Install and start sketchybar
+echo "🚀 Installing and starting sketchybar..."
+sketchybar --install-service
+sketchybar --start-service
+
 echo "✅ All done! Restart your terminal to apply changes."
