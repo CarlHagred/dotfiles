@@ -55,8 +55,12 @@ inner.horizontal = 10
 inner.vertical = 10
 outer.left = 10
 outer.bottom = 10
-outer.top = 10
 outer.right = 10
+outer.top = [
+  { monitor.main = 44 },           # MacBook (optional, notch already helps)
+  { monitor."LG UltraFine" = 44 }, # replace with your external's name
+  10,                              # fallback if a display has no bar
+]
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
