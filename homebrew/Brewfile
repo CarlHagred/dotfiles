@@ -16,6 +16,7 @@ brew "sketchybar"
 brew "azure/functions/azure-functions-core-tools@4"
 brew "mas"
 brew "nvim"
+brew "just"
 
 cask "1password"
 cask "amethyst"
