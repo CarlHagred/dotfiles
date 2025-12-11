@@ -57,7 +57,8 @@ outer.left = 10
 outer.bottom = 10
 outer.right = 10
 outer.top = [
-  { monitor."LG UltraFine" = 10 }, # replace with your external's name
+  { monitor.main = 44 },
+  { monitor."LG UltraFine" = 44 }, # replace with your external's name
   10,                              # fallback if a display has no bar
 ]
 
