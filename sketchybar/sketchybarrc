@@ -53,4 +53,7 @@ sketchybar --hotload true
 
 sketchybar --update
 
+# Start JankyBorders
+borders &
+
 echo "sketchybar configuration loaded.."
