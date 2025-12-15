@@ -38,6 +38,7 @@ cask "keka"
 cask "aerospace"
 cask "font-meslo-lg-nerd-font"
 cask "arc"
+cask "ableton-live-suite"
 
 mas "Vimlike", id: 1584519802
 mas "Wipr", id: 1662217862
