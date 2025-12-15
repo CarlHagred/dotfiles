@@ -3,8 +3,8 @@
 COLOR="$GREEN"
 
 sketchybar \
-	--add item sound right \
-	--set sound \
+	--add item volume right \
+	--set volume \
 	icon.color="$COLOR" \
 	icon.padding_left=10 \
 	label.color="$COLOR" \
@@ -16,5 +16,6 @@ sketchybar \
 	background.border_color="$COLOR" \
 	background.color="$BAR_COLOR" \
 	background.drawing=on \
+	click_script="open /System/Library/PreferencePanes/Sound.prefPane" \
 	script="$PLUGIN_DIR/sound.sh" \
-	--subscribe sound volume_change
+	--subscribe volume volume_change

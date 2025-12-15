@@ -4,7 +4,7 @@ COLOR="$CYAN"
 
 sketchybar --add item battery right \
 	--set battery \
-	update_freq=60 \
+	update_freq=120 \
 	icon.color="$COLOR" \
 	icon.padding_left=10 \
 	label.padding_right=10 \
@@ -16,5 +16,6 @@ sketchybar --add item battery right \
 	background.border_color="$COLOR" \
 	background.color="$BAR_COLOR" \
 	background.drawing=on \
+	click_script="open /System/Library/PreferencePanes/Battery.prefPane" \
 	script="$PLUGIN_DIR/power.sh" \
 	--subscribe battery power_source_change
