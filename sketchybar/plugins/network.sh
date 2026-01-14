@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Get network status
+LABEL_NAME="${NAME}_label"
 WIFI_DEVICE=$(networksetup -listallhardwareports | awk '/Wi-Fi/{getline; print $2}')
 WIFI_STATUS=$(ifconfig "$WIFI_DEVICE" 2>/dev/null | grep "status:" | awk '{print $2}')
 
@@ -22,7 +23,9 @@ if [ "$WIFI_STATUS" = "active" ]; then
 		ICON="󰤨"
 	fi
 	
-	sketchybar --set "$NAME" icon="$ICON" label="$SSID" drawing=on
+	sketchybar --set "$NAME" icon="$ICON" drawing=on \
+	           --set "$LABEL_NAME" label="$SSID" drawing=on
 else
-	sketchybar --set "$NAME" icon="󰤮" label="No WiFi" drawing=on
+	sketchybar --set "$NAME" icon="󰤮" drawing=on \
+	           --set "$LABEL_NAME" label="No WiFi" drawing=on
 fi

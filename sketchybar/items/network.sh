@@ -2,13 +2,16 @@
 
 COLOR="$SECONDARY_HIGHLIGHT"
 
-sketchybar --add item network right \
-  --set network \
+ICON_ITEM="network"
+LABEL_ITEM="${ICON_ITEM}_label"
+
+sketchybar --add item "$ICON_ITEM" right \
+  --set "$ICON_ITEM" \
   update_freq=10 \
   icon.color="$COLOR" \
-  icon.padding_left=18 \
-  label.color="$LABEL_COLOR" \
-  label.padding_right=10 \
+  icon.padding_left=10 \
+  icon.padding_right=10 \
+  label.drawing=off \
   background.height=26 \
   background.corner_radius="$CORNER_RADIUS" \
   background.border_width="$BORDER_WIDTH" \
@@ -18,3 +21,12 @@ sketchybar --add item network right \
   background.drawing=on \
   click_script="open /System/Library/PreferencePanes/Network.prefPane" \
   script="$PLUGIN_DIR/network.sh"
+
+sketchybar --add item "$LABEL_ITEM" right \
+  --set "$LABEL_ITEM" \
+  icon.drawing=off \
+  label.color="$LABEL_COLOR" \
+  label.padding_left=8 \
+  label.padding_right=10 \
+  background.drawing=off \
+  click_script="open /System/Library/PreferencePanes/Network.prefPane"
