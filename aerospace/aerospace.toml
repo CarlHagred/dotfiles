@@ -1,5 +1,9 @@
 # Place a copy of this config to ~/.aerospace.toml
 # After that, you can edit ~/.aerospace.toml to your liking
+
+# Config version for compatibility and deprecations
+config-version = 2
+
 # Notify Sketchybar about workspace change
 exec-on-workspace-change = [
   '/bin/bash',
@@ -38,6 +42,13 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
 automatically-unhide-macos-hidden-apps = false
+
+# List of workspaces that should stay alive even when empty
+persistent-workspaces = ["1", "2", "3", "4", "5"]
+
+# Make all windows tile by default
+[[on-window-detected]]
+run = 'layout tiling'
 
 # Possible values: (qwerty|dvorak|colemak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
