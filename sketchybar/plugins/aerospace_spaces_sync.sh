@@ -27,7 +27,10 @@ if [ -z "$FOCUSED" ]; then
   done
 fi
 
+BRACKET_DIRTY=0
+
 for ws in $WORKSPACES; do
+  ITEM_CREATED=0
   if ! sketchybar --query "space.$ws" >/dev/null 2>&1; then
     sketchybar --add item "space.$ws" left \
       --set "space.$ws" \
@@ -39,12 +42,13 @@ for ws in $WORKSPACES; do
         label.drawing=off \
         associated_bracket=aerospace_bracket \
         click_script="$AEROSPACE_CLI workspace $ws"
-  else
-    sketchybar --set "space.$ws" associated_bracket=aerospace_bracket
+    ITEM_CREATED=1
+    BRACKET_DIRTY=1
   fi
 
-  # Ensure workspace chips stay grouped before the arrow item
-  sketchybar --move "space.$ws" before aerospace_arrow
+  if [ "$ITEM_CREATED" -eq 1 ]; then
+    sketchybar --move "space.$ws" before aerospace_arrow
+  fi
 
   if [ "$ws" = "$FOCUSED" ]; then
     COLOR=$SPACE_ACTIVE_COLOR
@@ -55,21 +59,23 @@ for ws in $WORKSPACES; do
   sketchybar --set "space.$ws" icon.color=$COLOR
 done
 
-# Rebuild bracket to include all workspace items
-BRACKET_ITEMS=""
-for ws in $WORKSPACES; do
-  BRACKET_ITEMS="$BRACKET_ITEMS space.$ws"
-done
+# Rebuild bracket only when workspace items change
+if [ "$BRACKET_DIRTY" -eq 1 ]; then
+  BRACKET_ITEMS=""
+  for ws in $WORKSPACES; do
+    BRACKET_ITEMS="$BRACKET_ITEMS space.$ws"
+  done
 
-if [ -n "$BRACKET_ITEMS" ]; then
-  sketchybar --remove aerospace_bracket >/dev/null 2>&1
-  sketchybar --add bracket aerospace_bracket $BRACKET_ITEMS
-  sketchybar --set aerospace_bracket \
-    background.color=$ITEM_BG_COLOR \
-    background.corner_radius=11 \
-    background.height=26 \
-    background.border_width=$BORDER_WIDTH \
-    background.border_color=$ITEM_BORDER_COLOR \
-    background.shadow.drawing=off \
-    y_offset=0
+  if [ -n "$BRACKET_ITEMS" ]; then
+    sketchybar --remove aerospace_bracket >/dev/null 2>&1
+    sketchybar --add bracket aerospace_bracket $BRACKET_ITEMS
+    sketchybar --set aerospace_bracket \
+      background.color=$ITEM_BG_COLOR \
+      background.corner_radius=11 \
+      background.height=26 \
+      background.border_width=$BORDER_WIDTH \
+      background.border_color=$ITEM_BORDER_COLOR \
+      background.shadow.drawing=off \
+      y_offset=0
+  fi
 fi
