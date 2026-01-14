@@ -71,7 +71,7 @@ if [ "$BRACKET_DIRTY" -eq 1 ]; then
     sketchybar --add bracket aerospace_bracket $BRACKET_ITEMS
     sketchybar --set aerospace_bracket \
       background.color=$ITEM_BG_COLOR \
-      background.corner_radius=11 \
+      background.corner_radius=$CORNER_RADIUS \
       background.height=26 \
       background.border_width=$BORDER_WIDTH \
       background.border_color=$ITEM_BORDER_COLOR \
