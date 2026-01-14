@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-COLOR="$GREEN"
+COLOR="$ICON_COLOR"
 
 sketchybar \
 	--add item volume right \
@@ -13,8 +13,9 @@ sketchybar \
 	background.corner_radius="$CORNER_RADIUS" \
 	background.padding_right=5 \
 	background.border_width="$BORDER_WIDTH" \
-	background.border_color="$COLOR" \
-	background.color="$BAR_COLOR" \
+	background.border_color="$ITEM_BORDER_COLOR" \
+	background.color="$ITEM_BG_COLOR" \
+	background.shadow.drawing=off \
 	background.drawing=on \
 	click_script="open /System/Library/PreferencePanes/Sound.prefPane" \
 	script="$PLUGIN_DIR/sound.sh" \

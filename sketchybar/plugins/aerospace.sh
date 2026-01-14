@@ -19,8 +19,8 @@ if [ -z "$FOCUSED" ]; then
 fi
 
 # Define colors
-FOCUSED_COLOR_FOR_NUMBER=$ORANGE # Orange
-DEFAULT_COLOR_FOR_NUMBER=$COMMENT # Comment (darker color for dimmed numbers)
+FOCUSED_COLOR_FOR_NUMBER=$SPACE_ACTIVE_COLOR
+DEFAULT_COLOR_FOR_NUMBER=$SPACE_INACTIVE_COLOR
 
 if [ "$WORKSPACE_ID" = "$FOCUSED" ]; then
   # This is the focused workspace

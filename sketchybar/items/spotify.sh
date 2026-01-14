@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-COLOR="$GREEN"
+COLOR="$SECONDARY_HIGHLIGHT"
 
 sketchybar --add item spotify q \
 	--set spotify \
@@ -8,12 +8,14 @@ sketchybar --add item spotify q \
 	icon=󰎆 \
 	icon.color="$COLOR" \
 	icon.padding_left=10 \
-	background.color="$BAR_COLOR" \
+	label.color="$ICON_COLOR" \
+	background.color="$ITEM_ACTIVE_BG" \
 	background.height=26 \
 	background.corner_radius="$CORNER_RADIUS" \
 	background.border_width="$BORDER_WIDTH" \
-	background.border_color="$COLOR" \
-	background.padding_right=-5 \
+	background.border_color="$ITEM_BORDER_COLOR" \
+	background.shadow.drawing=off \
+	background.padding_right=6 \
 	background.drawing=on \
 	label.padding_right=10 \
 	label.max_chars=23 \
