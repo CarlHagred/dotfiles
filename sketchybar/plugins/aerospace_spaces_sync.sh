@@ -7,10 +7,24 @@ if ! command -v "$AEROSPACE_CLI" &>/dev/null; then
 fi
 
 WORKSPACES=$("$AEROSPACE_CLI" list-workspaces --all 2>/dev/null)
+if [ -z "$WORKSPACES" ]; then
+  COUNT=${WORKSPACE_COUNT:-9}
+  WORKSPACES=""
+  for ((i = 1; i <= COUNT; i++)); do
+    WORKSPACES="$WORKSPACES $i"
+  done
+  WORKSPACES=${WORKSPACES# }
+fi
 [ -z "$WORKSPACES" ] && exit 0
 
 if [ -z "$FOCUSED" ]; then
   FOCUSED=$("$AEROSPACE_CLI" list-workspaces --focused 2>/dev/null)
+fi
+if [ -z "$FOCUSED" ]; then
+  for ws in $WORKSPACES; do
+    FOCUSED=$ws
+    break
+  done
 fi
 
 for ws in $WORKSPACES; do
