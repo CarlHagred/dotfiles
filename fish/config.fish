@@ -23,6 +23,9 @@ alias gl="git l"
 set -Ux UV_NATIVE_TLS true
 
 set -gx PATH /Users/CHAGRED/TokenUpdater /usr/local/libexec/ $PATH
+if not contains $HOME/go/bin $PATH
+    set -gx PATH $PATH $HOME/go/bin
+end
 
 eval (/opt/homebrew/bin/brew shellenv)
 starship init fish | source
