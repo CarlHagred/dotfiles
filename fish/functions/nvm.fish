@@ -9,23 +9,6 @@ function nvm --description "Node version manager"
     set --local cmd $argv[1]
     set --local ver $argv[2]
 
-    set --local data_home $XDG_DATA_HOME
-    if test -z "$data_home"
-        set data_home ~/.local/share
-    end
-
-    if not set --query nvm_data[1]
-        set --global nvm_data $data_home/nvm
-    else if test -z "$nvm_data"
-        set --global nvm_data $data_home/nvm
-    end
-
-    if not set --query nvm_mirror[1]
-        set --global nvm_mirror https://nodejs.org/dist
-    else if test -z "$nvm_mirror"
-        set --global nvm_mirror https://nodejs.org/dist
-    end
-
     if set --query silent && ! set --query cmd[1]
         echo "nvm: Version number not specified (see nvm -h for usage)" >&2
         return 1

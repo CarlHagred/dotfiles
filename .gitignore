@@ -4,7 +4,6 @@ fish/fish_variables
 # Fish plugins (fisher/nvm artifacts)
 fish/completions/
 fish/functions/**
-!fish/functions/nvm.fish
 fish/conf.d/nvm.fish
 fish/fish_plugins
 
