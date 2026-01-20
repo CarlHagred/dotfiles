@@ -60,4 +60,20 @@ echo "🚀 Installing and starting sketchybar..."
 sketchybar --install-service
 sketchybar --start-service
 
+#install fisher
+if ! command -v fisher &>/dev/null; then
+  echo "🔆 Installing fisher..."
+  curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+else
+  echo "✅ Fisher already installed."
+fi
+
+#install nvm
+if ! command -v nvm &>/dev/null; then
+  echo "🔆 Installing UV..."
+  fisher install jorgebucaran/nvm.fish
+else
+  echo "✅ nvm already installed."
+fi
+
 echo "✅ All done! Restart your terminal to apply changes."
