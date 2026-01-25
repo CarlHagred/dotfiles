@@ -20,6 +20,8 @@ brew "just"
 brew "borders"
 brew "lazygit"
 brew "leader-key"
+brew "go"
+brew tailscale
 
 cask "1password"
 cask "amethyst"
@@ -39,6 +41,7 @@ cask "aerospace"
 cask "font-meslo-lg-nerd-font"
 cask "arc"
 cask "ableton-live-suite"
+cask "tailscale-app"
 
 mas "Vimlike", id: 1584519802
 mas "Wipr", id: 1662217862
