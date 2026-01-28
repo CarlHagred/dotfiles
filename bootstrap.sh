@@ -76,4 +76,7 @@ else
   echo "✅ nvm already installed."
 fi
 
+# Create hushlogin to suppress login message
+touch ~/.hushlogin
+
 echo "✅ All done! Restart your terminal to apply changes."

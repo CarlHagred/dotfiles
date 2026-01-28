@@ -1,5 +1,3 @@
-touch ~/.hushlogin
-
 # ALIAS
 alias ls=eza
 alias ll="eza -lahg"
@@ -22,7 +20,7 @@ alias gl="git l"
 
 set -Ux UV_NATIVE_TLS true
 
-set -gx PATH /Users/CHAGRED/TokenUpdater /usr/local/libexec/ $PATH
+set -gx PATH $HOME/TokenUpdater /usr/local/libexec/ $PATH
 if not contains $HOME/go/bin $PATH
     set -gx PATH $PATH $HOME/go/bin
 end

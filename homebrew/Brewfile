@@ -21,7 +21,7 @@ brew "borders"
 brew "lazygit"
 brew "leader-key"
 brew "go"
-brew tailscale
+brew "tailscale"
 
 cask "1password"
 cask "amethyst"
