@@ -22,6 +22,7 @@ brew "lazygit"
 brew "leader-key"
 brew "go"
 brew "tailscale"
+brew "fd"
 
 cask "1password"
 cask "amethyst"
