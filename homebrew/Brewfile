@@ -23,6 +23,8 @@ brew "leader-key"
 brew "go"
 brew "tailscale"
 brew "fd"
+brew "gleam"
+brew "erlang"
 
 cask "1password"
 cask "amethyst"
