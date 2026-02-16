@@ -51,6 +51,15 @@ else
   echo "✅ UV already installed."
 fi
 
+# Create ty language server wrapper for Neovim
+echo "🔤 Setting up ty language server..."
+mkdir -p "$HOME/.local/bin"
+cat > "$HOME/.local/bin/ty-server" << 'SCRIPT'
+#!/bin/bash
+exec uvx --default-index https://pypi.org/simple/ ty server "$@"
+SCRIPT
+chmod +x "$HOME/.local/bin/ty-server"
+
 # Run macOS defaults script
 echo " Applying macOS defaults..."
 "$HOME/.config/macos/macos_defaults.sh"
