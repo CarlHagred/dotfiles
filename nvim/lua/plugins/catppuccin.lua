@@ -73,7 +73,7 @@ return {
             catppuccin.setup(opts)
 
             -- Apply colorscheme
-            vim.cmd("colorscheme catppuccin")
+            vim.cmd("colorscheme catppuccin-mocha")
 
             -- (Optional) Extra enforcement for any plugin loading late that re-adds backgrounds.
             local function force_transparent()
