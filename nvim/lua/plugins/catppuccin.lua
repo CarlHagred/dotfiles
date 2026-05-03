@@ -126,7 +126,7 @@ return {
         opts = function(_, opts)
           -- Ensure lualine doesn't introduce opaque sections
           opts.options = opts.options or {}
-          opts.options.theme = "catppuccin"
+          opts.options.theme = "auto"
         end,
       },
     },
