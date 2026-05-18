@@ -2,11 +2,13 @@
 
 Welcome to my dotfiles! This repo sets up my macOS development environment, including:
 
-- 💻 Shell (Fish)
-- 🧰 CLI tools via Homebrew
+- 🐟 Shell (Fish + Starship prompt)
 - 🪟 Terminal (Ghostty)
-- 🧠 Editor (Zed)
-- ⚙️ Custom aliases and settings
+- 🧠 Editors (Zed, Neovim)
+- 🪟 Window Manager (AeroSpace)
+- 📊 Status Bar (Sketchybar)
+- ⌨️ Keyboard (Karabiner-Elements)
+- 🧰 CLI tools via Homebrew
 
 Everything is organized under `~/.config/` and tracked here for portability and versioning.
 
@@ -31,72 +33,121 @@ Before using these dotfiles, make sure you have:
 
 ## 🚀 Installation
 
-You can clone this repo into your `.config` directory:
+Clone this repo into your `.config` directory:
 
 ```sh
-git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/.config
+git clone https://github.com/CarlHagred/dotfiles.git ~/.config
 ```
 
-> Or clone it anywhere and symlink the relevant files into `~/.config`.
+Then run the bootstrap script to install everything:
+
+```sh
+chmod +x ~/.config/bootstrap.sh
+~/.config/bootstrap.sh
+```
 
 ---
 
-## 🍺 Install Homebrew Packages
+## 🛠 Bootstrap
 
-This installs all command-line tools and apps from your saved `Brewfile`:
+The `bootstrap.sh` script automates the full setup:
 
+1. Installs Xcode Command Line Tools (if missing)
+2. Installs Homebrew (if missing)
+3. Installs all packages from `homebrew/Brewfile`
+4. Sets Fish as the default shell
+5. Installs Rust via rustup
+6. Installs UV (Python package manager)
+7. Sets up the `ty` language server for Neovim
+8. Applies macOS defaults (key repeat, Dock behavior)
+9. Installs and starts Sketchybar
+10. Installs Fisher + nvm.fish
+11. Creates `~/.hushlogin`
+
+---
+
+## 🍺 Homebrew Packages
+
+All packages are declared in `homebrew/Brewfile`:
+
+**CLI tools:**
+`fish`, `starship`, `fzf`, `eza`, `zoxide`, `fd`, `btop`, `lazygit`, `nvim`, `node`, `go`, `rustup`, `terraform`, `podman`, `zellij`, `just`, `sketchybar`, `borders`, `azure-cli`, `azure-functions-core-tools@4`, `mas`, `tailscale`, `leader-key`
+
+**GUI apps (casks):**
+`Ghostty`, `Zed`, `AeroSpace`, `Arc`, `Obsidian`, `Raycast`, `1Password`, `Karabiner-Elements`, `Bruno`, `Keka`, `Windows App`, `Tailscale`
+
+**Fonts:**
+`MesloLG Nerd Font`, `JetBrainsMono Nerd Font`
+
+**Mac App Store:**
+`Vimlike`, `Wipr`, `Obsidian Web Clipper`, `1Password for Safari`
+
+Install with:
 ```sh
 brew bundle --file=~/.config/homebrew/Brewfile
 ```
 
-Includes:
-
-- Tools: `fish`, `fzf`, `eza`, `uv`, `zoxide`, `azure-cli`, `azure-functions-core-tools@4`
-- GUI apps: `1Password`, `Raycast`, `Ghostty`, `Karabiner-Elements`, `Zed`, `Obsidian`, `Windows App`
-
 ---
 
-## 🐟 Fish Shell Setup
+## 🐟 Fish Shell
 
-Set Fish as your default shell (if not already):
+Set Fish as your default shell:
 
 ```sh
 chsh -s /opt/homebrew/bin/fish
 ```
 
-Then link your config:
+Config in `fish/config.fish` includes:
 
-```sh
-ln -sf ~/.config/fish/config.fish ~/.config/fish/config.fish
-```
-
-Your Fish config includes:
-
-- Git and utility aliases
-- Azure Functions helpers
+- Aliases for `git`, `eza`, Python venvs, and Azure Functions
+- Homebrew shellenv initialization
 - Starship prompt + Zoxide
-- Custom `$PATH` additions
+- Custom `$PATH` (Go, local bin)
 
 ---
 
-## 🪞 Terminal (Ghostty)
+## 🪟 Ghostty (Terminal)
 
-Your `~/.config/ghostty/config` includes:
+Config in `ghostty/config`:
 
 - Font: JetBrainsMono Nerd Font
 - Theme: Catppuccin Mocha
-- Opacity: 85%
+- Background opacity: 85%
+- Hidden titlebar
 
-Install the font manually if needed:
-https://www.nerdfonts.com/font-downloads
+---
+
+## 🪟 AeroSpace (Window Manager)
+
+AeroSpace replaces macOS Spaces with a tiling window manager. Config in `aerospace/aerospace.toml`:
+
+- Starts at login
+- 5 persistent workspaces
+- Keybindings: `cmd-h/j/k/l` for focus, `cmd-shift-h/j/k/l` for moving windows
+- Workspace switching: `cmd-1` through `cmd-5`
+- Integrates with Sketchybar for workspace indicators
+- Uses JankyBorders for window borders
+
+---
+
+## 📊 Sketchybar (Status Bar)
+
+Custom macOS status bar. Config in `sketchybar/`:
+
+- Workspace indicators (via AeroSpace integration)
+- Installed and started by `bootstrap.sh`
+
+---
+
+## 🧠 Neovim
+
+Config in `nvim/`. The `ty` language server (Python) is set up by bootstrap via a wrapper script at `~/.local/bin/ty-server`.
 
 ---
 
 ## 🧠 Zed Editor
 
-Zed settings live in `~/.config/zed/settings.json`.
-
-If Zed isn't installed:
+Settings in `zed/settings.json`. Installed via Homebrew:
 
 ```sh
 brew install --cask zed
@@ -104,11 +155,19 @@ brew install --cask zed
 
 ---
 
-## 🧼 Recommended Extras
+## ⌨️ Karabiner-Elements
 
-- [Starship Prompt](https://starship.rs): Fast, customizable shell prompt.
-- [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads): For icons in terminal & Zed.
-- [Karabiner Elements](https://karabiner-elements.pqrs.org): For advanced keyboard remapping.
+Keyboard remapping config in `karabiner/`. Installed via Homebrew.
+
+---
+
+## ⭐ Starship Prompt
+
+Config in `starship.toml`. Initialized in Fish config:
+
+```fish
+starship init fish | source
+```
 
 ---
 
@@ -116,14 +175,17 @@ brew install --cask zed
 
 ```
 .config/
-├── fish/
-│   └── config.fish
-├── ghostty/
-│   └── config
-├── homebrew/
-│   └── Brewfile
-├── zed/
-│   └── settings.json
+├── aerospace/         # AeroSpace tiling WM config
+├── fish/              # Fish shell config & aliases
+├── ghostty/           # Ghostty terminal config
+├── homebrew/          # Brewfile
+├── karabiner/         # Karabiner-Elements keyboard remapping
+├── macos/             # macOS defaults script
+├── nvim/              # Neovim config
+├── sketchybar/        # Sketchybar status bar config
+├── zed/               # Zed editor settings
+├── starship.toml      # Starship prompt config
+└── bootstrap.sh       # One-command setup script
 ```
 
 ---
@@ -141,20 +203,11 @@ git push
 
 ---
 
-## 🛠 Bootstrap Setup
-
-To quickly install everything on a new Mac:
-
-```sh
-chmod +x ~/.config/bootstrap.sh
-~/.config/bootstrap.sh
-```
-
----
-
 ## 💬 License & Attribution
 
 This repo is for personal use, but feel free to fork or adapt!
 
 - Theme: [Catppuccin](https://github.com/catppuccin)
 - Fonts: [Nerd Fonts](https://www.nerdfonts.com)
+- Window Manager: [AeroSpace](https://github.com/nikitabobko/AeroSpace)
+- Status Bar: [Sketchybar](https://github.com/FelixKratz/SketchyBar)
