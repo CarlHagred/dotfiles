@@ -8,10 +8,6 @@ return {
       flavour = "mocha",
       transparent_background = true,
       term_colors = true,
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-      },
       integrations = {
         aerial = true,
         alpha = true,
