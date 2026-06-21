@@ -38,6 +38,7 @@ cask "font-meslo-lg-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
 cask "arc"
 cask "tailscale-app"
+cask "tableplus"
 
 mas "Vimlike", id: 1584519802
 mas "Wipr", id: 1662217862
