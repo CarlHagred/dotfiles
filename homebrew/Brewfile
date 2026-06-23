@@ -39,6 +39,8 @@ cask "font-jetbrains-mono-nerd-font"
 cask "arc"
 cask "tailscale-app"
 cask "tableplus"
+cask "wallspace"
+cask "wireshark"
 
 mas "Vimlike", id: 1584519802
 mas "Wipr", id: 1662217862
