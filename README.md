@@ -123,10 +123,13 @@ AeroSpace replaces macOS Spaces with a tiling window manager. Config in `aerospa
 
 - Starts at login
 - 5 persistent workspaces
+- Automatic two-column layout: the first window stays on the left and later windows tile vertically on the right
 - Keybindings: `cmd-h/j/k/l` for focus, `cmd-shift-h/j/k/l` for moving windows
 - Workspace switching: `cmd-1` through `cmd-5`
 - Integrates with Sketchybar for workspace indicators
 - Uses JankyBorders for window borders
+
+The detected-window callback runs `aerospace/two-column-layout.sh` to maintain this layout across all workspaces.
 
 ---
 
