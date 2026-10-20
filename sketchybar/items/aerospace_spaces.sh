@@ -25,11 +25,13 @@ sketchybar --add item aerospace_sync left \
 # Initial sync to populate workspace items
 "$HOME/.config/sketchybar/plugins/aerospace_spaces_sync.sh"
 
-# Add a yellow arrow after the aerospace bracket
+# Thin divider between the workspaces and the front app
 sketchybar --add item aerospace_arrow left \
            --set aerospace_arrow \
-                 icon="" \
-                 icon.color=$HIGHLIGHT_COLOR \
-                 icon.padding_left=$PADDINGS \
-                 icon.padding_right=$PADDINGS \
-                 label.drawing=off
+                 icon="│" \
+                 icon.color=$DIVIDER_COLOR \
+                 icon.font="$FONT:Regular:12.0" \
+                 icon.padding_left=4 \
+                 icon.padding_right=4 \
+                 label.drawing=off \
+                 background.drawing=off

@@ -1,23 +1,16 @@
 #!/usr/bin/env bash
 
-COLOR="$SECONDARY_HIGHLIGHT"
-
 sketchybar --add item spotify q \
 	--set spotify \
+	"${ISLAND_STYLE[@]}" \
 	scroll_texts=on \
 	icon=󰎆 \
-	icon.color="$COLOR" \
-	icon.padding_left=10 \
-	label.color="$ICON_COLOR" \
-	background.color="$ITEM_ACTIVE_BG" \
-	background.height=26 \
-	background.corner_radius="$CORNER_RADIUS" \
-	background.border_width="$BORDER_WIDTH" \
-	background.border_color="$ITEM_BORDER_COLOR" \
-	background.shadow.drawing=off \
-	background.padding_right=6 \
-	background.drawing=on \
-	label.padding_right=10 \
+	icon.color="$ACCENT" \
+	icon.padding_left=12 \
+	icon.padding_right=6 \
+	label.color="$LABEL_COLOR" \
+	label.padding_left=0 \
+	label.padding_right=14 \
 	label.max_chars=23 \
 	associated_display=active \
 	updates=on \

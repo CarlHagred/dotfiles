@@ -27,7 +27,10 @@ for i in 1 2 3 4 5 6; do
 	fi
 
 	row="$(printf "%-${WIDTH}s" "$row")"
-	if echo "$row" | grep -Eq "(^| )$TODAY( |$)"; then
+	is_today=false
+	echo "$row" | grep -Eq "(^| )$TODAY( |$)" && is_today=true
+
+	if $is_today; then
 		ARGS+=(--set "$name" drawing=on label="$row" label.color="$HIGHLIGHT_COLOR" \
 			background.drawing=on background.color="$ITEM_ACTIVE_BG")
 	else

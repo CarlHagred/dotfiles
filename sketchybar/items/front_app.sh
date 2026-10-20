@@ -1,21 +1,14 @@
 #!/usr/bin/env bash
 
-COLOR="$ICON_COLOR"
-
 sketchybar \
 	--add item front_app left \
 	--set front_app script="$PLUGIN_DIR/front_app.sh" \
 	icon.drawing=off \
-	background.height=26 \
+	background.drawing=off \
 	background.padding_left=0 \
-	background.padding_right=10 \
-	background.border_width="$BORDER_WIDTH" \
-	background.border_color="$ITEM_BORDER_COLOR" \
-	background.corner_radius="$CORNER_RADIUS" \
-	background.color="$ITEM_BG_COLOR" \
-	background.shadow.drawing=off \
-	label.color="$COLOR" \
-	label.padding_left=10 \
-	label.padding_right=10 \
+	background.padding_right=0 \
+	label.color="$LABEL_COLOR" \
+	label.padding_left=4 \
+	label.padding_right=14 \
 	associated_display=active \
 	--subscribe front_app front_app_switched

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
+source "$HOME/.config/sketchybar/plugins/hover.sh"
+
 # Get network status
-LABEL_NAME="${NAME}_label"
 WIFI_DEVICE=$(networksetup -listallhardwareports | awk '/Wi-Fi/{getline; print $2}')
 WIFI_STATUS=$(ifconfig "$WIFI_DEVICE" 2>/dev/null | grep "status:" | awk '{print $2}')
 
@@ -23,9 +24,11 @@ if [ "$WIFI_STATUS" = "active" ]; then
 		ICON="󰤨"
 	fi
 	
-	sketchybar --set "$NAME" icon="$ICON" drawing=on \
-	           --set "$LABEL_NAME" label="$SSID" drawing=on
+	if [ -n "$SSID" ]; then
+		sketchybar --set "$NAME" icon="$ICON" icon.color="$ICON_COLOR" icon.padding_right=5 label="$SSID" label.drawing=on
+	else
+		sketchybar --set "$NAME" icon="$ICON" icon.color="$ICON_COLOR" icon.padding_right=9 label.drawing=off
+	fi
 else
-	sketchybar --set "$NAME" icon="󰤮" drawing=on \
-	           --set "$LABEL_NAME" label="No WiFi" drawing=on
+	sketchybar --set "$NAME" icon="󰤮" icon.padding_right=5 icon.color="$ICON_DIM_COLOR" label="No WiFi" label.drawing=on
 fi

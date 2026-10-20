@@ -37,10 +37,10 @@ update() {
 		case "$device" in
 		*MacBook* | "")
 			case ${volume} in
-			100) icon="" ;;
-			[5-9]*) icon="" ;;
-			[0-9]*) icon="" ;;
-			*) icon="" ;;
+			100) icon="󰕾" ;;
+			[5-9]*) icon="󰖀" ;;
+			[0-9]*) icon="󰕿" ;;
+			*) icon="󰖁" ;;
 			esac
 			;;
 		*) icon="󰋋" ;; # headphones for any non built-in output
@@ -54,6 +54,9 @@ update() {
 }
 
 case "$SENDER" in
+"mouse.entered" | "mouse.exited")
+	source "$PLUGIN_DIR/hover.sh"
+	;;
 "mouse.clicked")
 	if [ "$BUTTON" = "right" ]; then
 		sketchybar --set "$NAME" popup.drawing=off

@@ -1,61 +1,64 @@
 #!/usr/bin/env sh
 
-# macOS-inspired frosted palette
-GLASS_BLACK=0xff1c1c1e
-GLASS_DARK=0xff2c2c2e
-GLASS_LIGHT=0xfff5f5f7
-ACCENT_BLUE=0xff5ac8fa
-ACCENT_MINT=0xff34c759
-ACCENT_YELLOW=0xffffd60a
-ACCENT_PINK=0xffff9f9a
-ACCENT_PURPLE=0xffbf5af2
-GLASS_STROKE=0x55ffffff
-GLASS_FILL=0x33ffffff
-
-BLACK=$GLASS_BLACK
-WHITE=$GLASS_LIGHT
-MAGENTA=$ACCENT_PURPLE
-BLUE=$ACCENT_BLUE
-CYAN=0xff64d2ff
-GREEN=$ACCENT_MINT
-YELLOW=$ACCENT_YELLOW
-ORANGE=0xffffa733
-RED=0xffff453a
-BAR_COLOR=$TRANSPARENT
-COMMENT=0x88f5f5f7
-
 TRANSPARENT=0x00000000
 
-# General bar colors
-ICON_COLOR=$WHITE      # Color of all icons
-LABEL_COLOR=$WHITE     # Color of all labels
-ICON_DIM_COLOR=0x99f5f5f7
-ITEM_BG_COLOR=$GLASS_FILL
-ITEM_ACTIVE_BG=0x55ffffff
-ITEM_BORDER_COLOR=0x22ffffff
-HIGHLIGHT_COLOR=$ACCENT_BLUE
-SECONDARY_HIGHLIGHT=$ACCENT_PURPLE
+# Neutral glass surfaces
+INK=0xff101014               # Dark text on accent fills
+ISLAND_BG=0xd91c1c1e         # Island / popup surface
+ISLAND_BORDER=0x1fffffff     # Hairline border
+HOVER_BG=0x1fffffff          # Hover tint on pills
+DIVIDER_COLOR=0x26ffffff
 
-ITEM_DIR="$HOME/.config/sketchybar/items"
-PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
+# Text
+WHITE=0xfff5f5f7
+LABEL_COLOR=$WHITE
+ICON_COLOR=0xd9f5f5f7
+ICON_DIM_COLOR=0x8cf5f5f7
+COMMENT=0x88f5f5f7
+
+# One accent, plus semantic colours
+ACCENT=0xff5ac8fa
+ACCENT_TINT=0x335ac8fa       # Translucent accent for highlighted rows
+GREEN=0xff34c759
+YELLOW=0xffffd60a
+ORANGE=0xffffa733
+RED=0xffff453a
+BLACK=0xff1c1c1e
+
+# Legacy names used across items and plugins
+BAR_COLOR=$TRANSPARENT
+ITEM_BG_COLOR=$ISLAND_BG
+ITEM_ACTIVE_BG=$ACCENT_TINT
+ITEM_BORDER_COLOR=$ISLAND_BORDER
+HIGHLIGHT_COLOR=$ACCENT
+SECONDARY_HIGHLIGHT=$ACCENT
+
+# Metrics
+BAR_HEIGHT=36
+ITEM_HEIGHT=28               # Island height
+PILL_HEIGHT=22               # Pills inside an island
+CORNER_RADIUS=14             # Island radius
+PILL_RADIUS=11
+BORDER_WIDTH=1
+GAP=8                        # Space between islands
+PADDINGS=6
+
+POPUP_BACKGROUND_COLOR=0xf21c1c1e
+POPUP_BORDER_COLOR=$ISLAND_BORDER
+POPUP_BORDER_WIDTH=1
+POPUP_CORNER_RADIUS=14
 
 FONT="MesloLGS Nerd Font Mono"
 
-PADDINGS=6
-
-POPUP_BORDER_WIDTH=1
-POPUP_CORNER_RADIUS=12
-POPUP_BACKGROUND_COLOR=0xee1c1c1e
-POPUP_BORDER_COLOR=$ITEM_BORDER_COLOR
-
-CORNER_RADIUS=8
-BORDER_WIDTH=1
-
 SHADOW=off
+POPUP_SHADOW=on
 WORKSPACE_COUNT=5
 
-SPACE_ACTIVE_COLOR=$HIGHLIGHT_COLOR
+SPACE_ACTIVE_COLOR=$INK
 SPACE_INACTIVE_COLOR=$ICON_DIM_COLOR
+
+ITEM_DIR="$HOME/.config/sketchybar/items"
+PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 
 AEROSPACE_CLI="/opt/homebrew/bin/aerospace"  # or "aerospace" if on PATH
 CONFIG_DIR="$HOME/.config/sketchybar"

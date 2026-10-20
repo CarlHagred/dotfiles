@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+source "$HOME/.config/sketchybar/variables.sh"
+source "$HOME/.config/sketchybar/plugins/hover.sh"
+
 PERCENTAGE=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
 CHARGING=$(pmset -g batt | grep 'AC Power')
 
@@ -27,4 +30,14 @@ if [ "$CHARGING" != "" ]; then
 	ICON=""
 fi
 
-sketchybar --set "$NAME" icon="$ICON" label="${PERCENTAGE}% "
+if [ "$CHARGING" != "" ]; then
+	COLOR=$GREEN
+elif [ "$PERCENTAGE" -le 10 ]; then
+	COLOR=$RED
+elif [ "$PERCENTAGE" -le 20 ]; then
+	COLOR=$ORANGE
+else
+	COLOR=$ICON_COLOR
+fi
+
+sketchybar --set "$NAME" icon="$ICON" icon.color="$COLOR" label="${PERCENTAGE}%"

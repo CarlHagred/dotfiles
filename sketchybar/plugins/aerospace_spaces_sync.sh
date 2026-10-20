@@ -34,14 +34,20 @@ for ws in $WORKSPACES; do
   if ! sketchybar --query "space.$ws" >/dev/null 2>&1; then
     sketchybar --add item "space.$ws" left \
       --set "space.$ws" \
-        background.drawing=off \
+        background.drawing=on \
+        background.color=$TRANSPARENT \
+        background.height=$PILL_HEIGHT \
+        background.corner_radius=$PILL_RADIUS \
+        background.padding_left=2 \
+        background.padding_right=2 \
         icon="$ws" \
         icon.color=$SPACE_INACTIVE_COLOR \
-        icon.padding_left=$((PADDINGS * 2)) \
-        icon.padding_right=$((PADDINGS * 2)) \
+        icon.padding_left=9 \
+        icon.padding_right=9 \
         label.drawing=off \
-        associated_bracket=aerospace_bracket \
-        click_script="$AEROSPACE_CLI workspace $ws"
+        click_script="$AEROSPACE_CLI workspace $ws" \
+        script="$PLUGIN_DIR/space_hover.sh" \
+      --subscribe "space.$ws" mouse.entered mouse.exited
     ITEM_CREATED=1
     BRACKET_DIRTY=1
   fi
@@ -51,31 +57,13 @@ for ws in $WORKSPACES; do
   fi
 
   if [ "$ws" = "$FOCUSED" ]; then
-    COLOR=$SPACE_ACTIVE_COLOR
+    sketchybar --animate tanh 10 --set "space.$ws" icon.color=$SPACE_ACTIVE_COLOR background.color=$ACCENT
   else
-    COLOR=$SPACE_INACTIVE_COLOR
+    sketchybar --animate tanh 10 --set "space.$ws" icon.color=$SPACE_INACTIVE_COLOR background.color=$TRANSPARENT
   fi
-
-  sketchybar --set "space.$ws" icon.color=$COLOR
 done
 
-# Rebuild bracket only when workspace items change
+# Rebuild the left island only when workspace items change
 if [ "$BRACKET_DIRTY" -eq 1 ]; then
-  BRACKET_ITEMS=""
-  for ws in $WORKSPACES; do
-    BRACKET_ITEMS="$BRACKET_ITEMS space.$ws"
-  done
-
-  if [ -n "$BRACKET_ITEMS" ]; then
-    sketchybar --remove aerospace_bracket >/dev/null 2>&1
-    sketchybar --add bracket aerospace_bracket $BRACKET_ITEMS
-    sketchybar --set aerospace_bracket \
-      background.color=$ITEM_BG_COLOR \
-      background.corner_radius=$CORNER_RADIUS \
-      background.height=26 \
-      background.border_width=$BORDER_WIDTH \
-      background.border_color=$ITEM_BORDER_COLOR \
-      background.shadow.drawing=off \
-      y_offset=0
-  fi
+  "$HOME/.config/sketchybar/plugins/left_island.sh"
 fi

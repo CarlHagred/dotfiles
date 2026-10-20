@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-source "$HOME/.config/sketchybar/variables.sh" # Loads all defined colors
+source "$HOME/.config/sketchybar/variables.sh" # Loads all defined colors and metrics
+source "$HOME/.config/sketchybar/style.sh"     # Shared island / pill / popup styles
 
 # General bar and defaults
 
-sketchybar --bar height=34 \
+sketchybar --bar height="$BAR_HEIGHT" \
   color="$BAR_COLOR" \
   shadow="$SHADOW" \
   position=top \
@@ -12,12 +13,12 @@ sketchybar --bar height=34 \
   padding_right=10 \
   padding_left=10 \
   corner_radius="$CORNER_RADIUS" \
-  y_offset=4 \
+  y_offset=3 \
   margin=0 \
   blur_radius=38 \
   notch_width=200 \
   --default updates=when_shown \
-  icon.font="$FONT:Bold:13.5" \
+  icon.font="$FONT:Bold:14.0" \
   icon.color="$ICON_COLOR" \
   icon.padding_left="$PADDINGS" \
   icon.padding_right="$PADDINGS" \
@@ -27,25 +28,31 @@ sketchybar --bar height=34 \
   label.padding_right="$PADDINGS" \
   background.padding_right="$PADDINGS" \
   background.padding_left="$PADDINGS" \
-  popup.background.border_width=1 \
-  popup.background.corner_radius=11 \
+  popup.background.border_width="$POPUP_BORDER_WIDTH" \
+  popup.background.corner_radius="$POPUP_CORNER_RADIUS" \
   popup.background.border_color="$POPUP_BORDER_COLOR" \
   popup.background.color="$POPUP_BACKGROUND_COLOR" \
-  popup.background.shadow.drawing="$SHADOW"
+  popup.background.shadow.drawing="$POPUP_SHADOW"
 
-# Left
+# Left island: workspaces | front app
 # source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/aerospace_spaces.sh"
 source "$ITEM_DIR/front_app.sh"
+"$PLUGIN_DIR/left_island.sh"
 
 # Center (of notch)
 source "$ITEM_DIR/spotify.sh"
 
-# Right
+# Right (added right to left): clock island, then the status island
 source "$ITEM_DIR/clock.sh"
+spacer 1 right
 source "$ITEM_DIR/volume.sh"
+sketchybar --add item div.2 right --set div.2 "${DIVIDER_STYLE[@]}"
 source "$ITEM_DIR/battery.sh"
+sketchybar --add item div.1 right --set div.1 "${DIVIDER_STYLE[@]}"
 source "$ITEM_DIR/network.sh"
+sketchybar --add bracket status_island network div.1 battery div.2 volume \
+  --set status_island "${BRACKET_STYLE[@]}"
 
 #################### Finalizing Setup ####################
 
