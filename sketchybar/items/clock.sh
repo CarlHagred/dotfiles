@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Clock island: date (dim) in the icon slot, time in the label. Click opens the calendar popup.
 
 sketchybar --add item clock right \
 	--set clock \
@@ -12,25 +13,64 @@ sketchybar --add item clock right \
 	label.padding_left=0 \
 	label.padding_right=14 \
 	popup.align=right \
-	popup.y_offset=8 \
-	popup.height=24 \
-	popup.background.corner_radius="$POPUP_CORNER_RADIUS" \
-	popup.background.shadow.drawing="$POPUP_SHADOW" \
-	script="$PLUGIN_DIR/clock.sh" \
-	--subscribe clock mouse.clicked mouse.exited.global system_woke mouse.entered mouse.exited
+	"${POPUP_ISLAND_STYLE[@]}" \
+	script="$PLUGIN_DIR/clock/clock.sh" \
+	--subscribe clock mouse.clicked system_woke mouse.entered mouse.exited
 
-# Calendar popup: one item per line of `cal` output (filled by plugins/calendar_popup.sh)
-CAL_ROW=("${POPUP_ROW_STYLE[@]}" icon.drawing=off label.font="$FONT:Bold:13.0" label.padding_left=12 label.padding_right=12
-	# SketchyBar measures labels without their leading blanks, which hides week rows that
-	# start with spaces; a fixed width (22 monospaced cells) avoids that
-	label.width=176 label.align=left)
+# Calendar popup, filled by plugins/clock/popup.sh and plugins/clock/events.sh.
+CAL_WIDTH=200
+# SketchyBar measures labels without their leading blanks, which hides week rows that
+# start with spaces, so the calendar rows have a fixed width.
+CAL_ROW=("${POPUP_ROW_STYLE[@]}"
+	icon.drawing=off
+	label.padding_left=12
+	label.padding_right=12
+	label.width="$CAL_WIDTH"
+	label.align=center
+	script="$PLUGIN_DIR/clock/nav.sh")
+# Grid rows are left aligned (centering mis-measures rows that start with blanks) and
+# indented by half of the spare width instead.
+CAL_GRID=("${CAL_ROW[@]}" label.align=left label.padding_left=24 label.padding_right=0)
 
-sketchybar --add item clock.cal.title popup.clock \
+sketchybar \
+	--add item clock.cal.title popup.clock \
 	--set clock.cal.title "${CAL_ROW[@]}" label.color="$ACCENT" \
+	--subscribe clock.cal.title mouse.clicked mouse.scrolled \
+	\
+	--add item clock.cal.today popup.clock \
+	--set clock.cal.today "${CAL_ROW[@]}" label="↩ Today" label.color="$ICON_DIM_COLOR" drawing=off \
+	--subscribe clock.cal.today mouse.clicked mouse.scrolled \
+	\
 	--add item clock.cal.head popup.clock \
-	--set clock.cal.head "${CAL_ROW[@]}" label.color="$ICON_DIM_COLOR"
+	--set clock.cal.head "${CAL_GRID[@]}" label.color="$ICON_DIM_COLOR" \
+	--subscribe clock.cal.head mouse.scrolled
 
 for i in 1 2 3 4 5 6; do
 	sketchybar --add item "clock.cal.w$i" popup.clock \
-		--set "clock.cal.w$i" "${CAL_ROW[@]}"
+		--set "clock.cal.w$i" "${CAL_GRID[@]}" \
+		--subscribe "clock.cal.w$i" mouse.scrolled
+done
+
+# Upcoming events
+sketchybar \
+	--add item clock.ev.sep popup.clock \
+	--set clock.ev.sep "${POPUP_RULE_STYLE[@]}" width="$CAL_WIDTH" \
+	--add item clock.ev.hdr popup.clock \
+	--set clock.ev.hdr "${POPUP_ROW_STYLE[@]}" \
+	icon.drawing=off \
+	label="UPCOMING" \
+	label.color="$ICON_DIM_COLOR" \
+	label.font="$FONT:Bold:10.5" \
+	label.padding_left=14 \
+	click_script="open -a Calendar"
+
+for i in 1 2 3 4 5; do
+	sketchybar --add item "clock.ev.$i" popup.clock \
+		--set "clock.ev.$i" "${POPUP_ROW_STYLE[@]}" \
+		icon.drawing=off \
+		drawing=off \
+		label.width="$CAL_WIDTH" \
+		label.align=left \
+		label.max_chars=25 \
+		click_script="open -a Calendar"
 done

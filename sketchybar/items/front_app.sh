@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
+# Name of the frontmost app, shown inside the left island.
 
 sketchybar \
 	--add item front_app left \
-	--set front_app script="$PLUGIN_DIR/front_app.sh" \
+	--set front_app script="$PLUGIN_DIR/front_app/front_app.sh" \
 	icon.drawing=off \
 	background.drawing=off \
 	background.padding_left=0 \

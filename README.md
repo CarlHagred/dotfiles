@@ -137,8 +137,14 @@ The detected-window callback runs `aerospace/two-column-layout.sh` to maintain t
 
 Custom macOS status bar. Config in `sketchybar/`:
 
-- Workspace indicators (via AeroSpace integration)
+- Floating glass "islands": workspaces + front app, media, status (network, battery, volume), clock
+- Workspace indicators (via AeroSpace integration, one set per monitor)
+- Popups: calendar (`cal` + upcoming events), volume + audio devices, network, battery, media controls
+- Mic / camera in-use dot
+- A small Swift helper (`sketchybar/helpers/`) is built by `bootstrap.sh` (needs Xcode Command Line Tools)
+- Extra tools used: `switchaudio-osx`, `blueutil`, `ical-buddy` (all in the Brewfile)
 - Installed and started by `bootstrap.sh`
+- Layout, conventions and how to extend it: `sketchybar/README.md`
 
 ---
 

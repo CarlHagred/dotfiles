@@ -64,6 +64,10 @@ chmod +x "$HOME/.local/bin/ty-server"
 echo " Applying macOS defaults..."
 "$HOME/.config/macos/macos_defaults.sh"
 
+# Build the native SketchyBar helper (needs Xcode Command Line Tools)
+echo "🔨 Building sketchybar helper..."
+make -C "$HOME/.config/sketchybar/helpers"
+
 # Install and start sketchybar
 echo "🚀 Installing and starting sketchybar..."
 sketchybar --install-service

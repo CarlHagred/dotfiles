@@ -1,66 +1,74 @@
 #!/usr/bin/env bash
+# SketchyBar entry point: bar settings, then every item. See README.md for the layout.
 
-source "$HOME/.config/sketchybar/variables.sh" # Loads all defined colors and metrics
-source "$HOME/.config/sketchybar/style.sh"     # Shared island / pill / popup styles
+source "${CONFIG_DIR:-$HOME/.config/sketchybar}/lib/common.sh" # Paths, tools and theme tokens
+source "$LIB_DIR/style.sh"                                      # Shared island / pill / popup styles
+source "$LIB_DIR/displays.sh"                                   # Main-display helpers
 
-# General bar and defaults
+# --- Bar and item defaults --------------------------------------------------
 
 sketchybar --bar height="$BAR_HEIGHT" \
-  color="$BAR_COLOR" \
-  shadow="$SHADOW" \
-  position=top \
-  sticky=on \
-  padding_right=10 \
-  padding_left=10 \
-  corner_radius="$CORNER_RADIUS" \
-  y_offset=3 \
-  margin=0 \
-  blur_radius=38 \
-  notch_width=200 \
-  --default updates=when_shown \
-  icon.font="$FONT:Bold:14.0" \
-  icon.color="$ICON_COLOR" \
-  icon.padding_left="$PADDINGS" \
-  icon.padding_right="$PADDINGS" \
-  label.font="$FONT:Bold:13.0" \
-  label.color="$LABEL_COLOR" \
-  label.padding_left="$PADDINGS" \
-  label.padding_right="$PADDINGS" \
-  background.padding_right="$PADDINGS" \
-  background.padding_left="$PADDINGS" \
-  popup.background.border_width="$POPUP_BORDER_WIDTH" \
-  popup.background.corner_radius="$POPUP_CORNER_RADIUS" \
-  popup.background.border_color="$POPUP_BORDER_COLOR" \
-  popup.background.color="$POPUP_BACKGROUND_COLOR" \
-  popup.background.shadow.drawing="$POPUP_SHADOW"
+	color="$TRANSPARENT" \
+	shadow="$SHADOW" \
+	position=top \
+	sticky=on \
+	padding_right=10 \
+	padding_left=10 \
+	corner_radius="$CORNER_RADIUS" \
+	y_offset=3 \
+	margin=0 \
+	blur_radius=38 \
+	notch_width=200 \
+	--default updates=when_shown \
+	icon.font="$FONT:Bold:14.0" \
+	icon.color="$ICON_COLOR" \
+	icon.padding_left="$PADDINGS" \
+	icon.padding_right="$PADDINGS" \
+	label.font="$FONT:Bold:13.0" \
+	label.color="$LABEL_COLOR" \
+	label.padding_left="$PADDINGS" \
+	label.padding_right="$PADDINGS" \
+	background.padding_right="$PADDINGS" \
+	background.padding_left="$PADDINGS" \
+	popup.background.border_width="$POPUP_BORDER_WIDTH" \
+	popup.background.corner_radius="$POPUP_CORNER_RADIUS" \
+	popup.background.border_color="$POPUP_BORDER_COLOR" \
+	popup.background.color="$POPUP_BACKGROUND_COLOR" \
+	popup.background.shadow.drawing="$POPUP_SHADOW"
 
-# Left island: workspaces | front app
-# source "$ITEM_DIR/apple.sh"
-source "$ITEM_DIR/aerospace_spaces.sh"
+# --- Left island: workspaces | front app ------------------------------------
+
+source "$ITEM_DIR/workspaces.sh"
 source "$ITEM_DIR/front_app.sh"
-"$PLUGIN_DIR/left_island.sh"
+"$PLUGIN_DIR/workspaces/left_island.sh"
 
-# Center (of notch)
-source "$ITEM_DIR/spotify.sh"
+# --- Center (left of the notch): media --------------------------------------
 
-# Right (added right to left): clock island, then the status island
+source "$ITEM_DIR/media.sh"
+
+# --- Right (items are added right to left): clock island, then status island -
+
 source "$ITEM_DIR/clock.sh"
 spacer 1 right
+
 source "$ITEM_DIR/volume.sh"
 sketchybar --add item div.2 right --set div.2 "${DIVIDER_STYLE[@]}"
 source "$ITEM_DIR/battery.sh"
 sketchybar --add item div.1 right --set div.1 "${DIVIDER_STYLE[@]}"
 source "$ITEM_DIR/network.sh"
-sketchybar --add bracket status_island network div.1 battery div.2 volume \
-  --set status_island "${BRACKET_STYLE[@]}"
+sketchybar --add item div.0 right --set div.0 "${DIVIDER_STYLE[@]}" drawing=off
+source "$ITEM_DIR/privacy.sh"
 
-#################### Finalizing Setup ####################
+sketchybar --add bracket status_island privacy div.0 network div.1 battery div.2 volume \
+	--set status_island "${BRACKET_STYLE[@]}"
+apply_status_display # The status island lives on the main display only
+
+# --- Finalizing --------------------------------------------------------------
 
 sketchybar --hotload true
-
 sketchybar --update
 
-# Start JankyBorders
-borders &
+# Window borders (JankyBorders); start it only if it is not running yet
+pgrep -x borders >/dev/null || borders &
 
 echo "sketchybar configuration loaded.."

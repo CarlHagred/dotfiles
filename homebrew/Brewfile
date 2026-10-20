@@ -25,6 +25,7 @@ brew "fd"
 brew "rustup"
 brew "switchaudio-osx"
 brew "blueutil"
+brew "ical-buddy"
 
 cask "1password"
 cask "bruno"

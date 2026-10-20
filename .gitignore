@@ -25,3 +25,6 @@ flutter/
 
 mole/
 wireshark/
+
+# Compiled SketchyBar helper (built by bootstrap.sh / make)
+sketchybar/helpers/bin/
