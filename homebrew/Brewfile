@@ -23,6 +23,8 @@ brew "go"
 brew "tailscale"
 brew "fd"
 brew "rustup"
+brew "switchaudio-osx"
+brew "blueutil"
 
 cask "1password"
 cask "bruno"
