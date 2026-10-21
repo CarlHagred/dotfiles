@@ -1,5 +1,6 @@
 tap "azure/functions"
 tap "nikitabobko/tap"
+tap "FelixKratz/formulae"
 brew "azure-cli"
 brew "btop"
 brew "eza"
@@ -13,7 +14,6 @@ brew "zellij"
 brew "zoxide"
 brew "sketchybar"
 brew "azure/functions/azure-functions-core-tools@4"
-brew "mas"
 brew "nvim"
 brew "just"
 brew "borders"
@@ -41,11 +41,5 @@ cask "font-jetbrains-mono-nerd-font"
 cask "helium-browser"
 cask "tailscale-app"
 cask "tableplus"
-cask "wallspace"
 cask "wireshark"
 cask "vorssaint"
-
-mas "Vimlike", id: 1584519802
-mas "Wipr", id: 1662217862
-mas "Obsidian Web Clipper", id: 6720708363
-mas "1Password for Safari", id: 1569813296
