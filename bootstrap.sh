@@ -54,7 +54,7 @@ fi
 # Create ty language server wrapper for Neovim
 echo "🔤 Setting up ty language server..."
 mkdir -p "$HOME/.local/bin"
-cat > "$HOME/.local/bin/ty-server" << 'SCRIPT'
+cat >"$HOME/.local/bin/ty-server" <<'SCRIPT'
 #!/bin/bash
 exec uvx --default-index https://pypi.org/simple/ ty server "$@"
 SCRIPT
@@ -91,5 +91,10 @@ fi
 
 # Create hushlogin to suppress login message
 touch ~/.hushlogin
+
+# Create global .gitignore
+touch ~/.gitignore
+echo ".DS_Store" >>~/.gitignore
+git config --global core.excludesfile ~/.gitignore
 
 echo "✅ All done! Restart your terminal to apply changes."
